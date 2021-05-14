@@ -2,17 +2,11 @@ import slick.jdbc.JdbcBackend.Database
 import slick.lifted.{TableQuery, Tag}
 import slick.jdbc.SQLiteProfile.api._
 
+import java.util.{Calendar, Date}
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class ToDos (tag: Tag) extends Table[(Int, String, String)](tag, "TODOS") { //todo: replace int with the appropriate datetime type
-  def date = column[Int]("DATE", O.PrimaryKey) // This is the primary key column
-  def project = column[String]("PROJECT")
-  def item = column[String]("ITEM")
-  // Every table needs a * projection with the same type as the table's type parameter
-  def * = (date, project, item)
-}
-
 object MyDB extends App {
+//  val now = Calendar.getInstance().getTime()
   val db = Database.forConfig("todos")
   val todosTable = TableQuery[ToDos]
   val setup = DBIO.seq(
@@ -31,5 +25,3 @@ object MyDB extends App {
   setupFuture.value
   db.close() //close connection to server otherwise it keeps waiting forever
 }
-
-
