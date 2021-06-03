@@ -1,3 +1,5 @@
+package model
+
 import slick.jdbc.SQLiteProfile.api._
 import slick.lifted.Tag
 

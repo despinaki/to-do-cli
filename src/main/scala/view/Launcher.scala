@@ -1,4 +1,6 @@
-import wvlet.airframe.launcher.{Launcher, argument, command, option}
+package view
+
+import wvlet.airframe.launcher.{Launcher, command, option}
 import wvlet.log.LogSupport
 
 case class GlobalOption(
@@ -28,6 +30,7 @@ class MyApp(g:GlobalOption) extends LogSupport {
              item:Option[String] = None
            ) {
 //    val item = host.getOrElse("lots of things to do!")
+
     println(s"Adding item '${item.get}' to project '${project.get}'.")
   }
 }
