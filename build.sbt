@@ -11,3 +11,6 @@ libraryDependencies ++= Seq(
   "org.xerial"          %  "sqlite-jdbc"          % "3.34.0",
   "org.wvlet.airframe"  %% "airframe-launcher"    % "19.11.1"
 )
+
+enablePlugins(PackPlugin)
+packMain := Map("todo" -> "com.github.despinaki.Main")

@@ -1,14 +1,9 @@
-package view
+package com.github.despinaki.view
 
-import wvlet.airframe.launcher.{Launcher, command, option}
+import wvlet.airframe.launcher.{command, option}
 import wvlet.log.LogSupport
 
-case class GlobalOption(
-                         @option(prefix = "-h,--help", description = "display help messages", isHelp = true)
-                         help: Boolean = false,
-//                         @option(prefix = "-l,--loglevel", description = "log level")
-//                         loglevel: Option[LogLevel] = None
-                       )
+
 class MyApp(g:GlobalOption) extends LogSupport {
 //  Logger.setDefaultLogLevel(g.loglevel)
 
@@ -16,11 +11,6 @@ class MyApp(g:GlobalOption) extends LogSupport {
   def default {
     println("Type --help to display the list of commands")
   }
-
-//  @command(description = "say world")
-//  def world(@argument message: String) {
-//    println(s"world ${message}")
-//  }
 
   @command(description = "Add a to-do item in a project.")
   def add(
@@ -33,8 +23,4 @@ class MyApp(g:GlobalOption) extends LogSupport {
 
     println(s"Adding item '${item.get}' to project '${project.get}'.")
   }
-}
-
-object Launch extends App {
-  Launcher.execute[MyApp]("add -p 'household' -i 'do laundry'")
 }

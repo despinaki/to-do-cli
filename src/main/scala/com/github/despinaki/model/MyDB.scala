@@ -1,14 +1,14 @@
-package model
+package com.github.despinaki.model
 
-import model.Add.{db, setup}
+import slick.dbio.DBIO
 import slick.jdbc.JdbcBackend.Database
-import slick.jdbc.SQLiteProfile.api._
 import slick.lifted.TableQuery
+import slick.jdbc.SQLiteProfile.api._
 
 class MyDB {
   //  val now = Calendar.getInstance().getTime()
   val db = Database.forConfig("todos")
-  val todosTable = TableQuery[ToDos]
+  var todosTable = TableQuery[ToDos]
   val setup = DBIO.seq(
     // Create the table, including primary and foreign keys
     todosTable.schema.create,
@@ -25,10 +25,4 @@ object Add extends MyDB {
   def addToTable(date: Int, project: String, item: String): Unit = {
     todosTable += (date, project, item)
   }
-}
-
-object Setup extends MyDB {
-  val setupFuture = db.run(setup) //returns a promise
-  setupFuture.value
-  db.close() //close connection to server otherwise it keeps waiting forever
 }

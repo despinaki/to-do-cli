@@ -1,4 +1,4 @@
-package model
+package com.github.despinaki.model
 
 import slick.jdbc.SQLiteProfile.api._
 import slick.lifted.Tag
